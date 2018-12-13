@@ -1,0 +1,27 @@
+<% content_for(:title, "Players") %>
+
+<h1>League of <%= pluralize(@players.count, "Player") %></h1>
+
+<table>
+	<thead>
+		<tr>
+			<td>First Name</td>
+			<td>Surname</td>
+			<td>Action</td>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @players.each do |player| %>
+		<tr>
+			<td><%= player.first_name %></td>
+			<td><%= player.surname %></td>
+			<td><%= link_to "Show Profile", player_path(player.id) %></td> | 
+			<td><%= link_to "Edit Profile", player_edit_path(player.id) %></td>	| 
+			<td><%= link_to "Delete Profile", player_path(player.id), data: {method: :delete, confirm: 'Are you sure?'} %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= link_to "New Player", players_new_path %>
